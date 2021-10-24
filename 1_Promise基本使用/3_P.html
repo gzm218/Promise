@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="page_header">Promise ajax封装</h2>
+      <button class="btn btn-primary" id="btn">点击发送请求</button>
+    </div>
+    <script>
+      const btn = document.querySelector('#btn');
+
+      btn.addEventListener('click', function () {
+        const p = new Promise((res, jec) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', 'http://poetry.apiopen.top/sentences');
+          xhr.send();
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              if (xhr.status >= 200 && xhr.status < 300) {
+                // console.log(xhr.response);
+                res(xhr.response);
+              } else {
+                // console.log(xhr.status);
+                jec(xhr.status);
+              }
+            }
+          };
+        }).then(
+          (value) => {
+            console.log(value);
+          },
+          (res) => {
+            console.log(res);
+          }
+        );
+      });
+    </script>
+  </body>
+</html>

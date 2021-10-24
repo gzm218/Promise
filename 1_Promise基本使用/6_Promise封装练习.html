@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+       *封装一个 sendAjax 发送 GET AJAX 请求
+       *参数 URL
+       *返回结果 Promise 对象
+       */
+      function sendAJAX(url) {
+        return new Promise((reslove, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', url);
+          xhr.send();
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              if (xhr.status >= 200 && xhr.status < 300) {
+                reslove(xhr.response);
+              } else {
+                reject(xhr.status);
+              }
+            }
+          };
+        });
+      }
+      sendAJAX('http://poetry.apiopen.top/sentences').then(
+        (value) => {
+          console.log(value);
+        },
+        (reason) => {
+          console.warn(reason);
+        }
+      );
+    </script>
+  </body>
+</html>

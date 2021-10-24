@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      async function main() {
+        // 1.如果返回值是一个非Promise类型的数据
+        // return 433;
+        // 2.如果是以恶搞Promise对象
+        let p = new Promise((res, rej) => {
+          // res('433');
+          rej('677');
+        });
+        // 3.抛出异常
+        // throw 'ddd';
+
+        //
+
+        try {
+          let res = await p;
+          // console.log(res);
+        } catch (error) {
+          console.log(error);
+        }
+        // let res1 = await 20;
+        // console.log(res1);
+      }
+      let res = main();
+      console.log(res);
+    </script>
+  </body>
+</html>

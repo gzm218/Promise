@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let p = new Promise((res, rej) => {
+        res('ok');
+      });
+
+      let res = p.then(
+        (value) => {
+          console.log(value);
+          // return 12;
+          return new Promise((res, rej) => {
+            res('666');
+          });
+        },
+        (reason) => {
+          console.log(reason);
+        }
+      );
+      console.log(res);
+    </script>
+  </body>
+</html>
